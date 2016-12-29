@@ -4,8 +4,7 @@
 
 % First Order Dipole Differential Beamforming in circular microphone array
 % First-order CDMAs can be designed with two or three microphones.
-% While two microphones are corresponds to an Linear Differential
-% Microphone Array (LDMA),
+% While two microphones are corresponds to an Linear Differential Microphone Array (LDMA),
 % three microphones are in a triangular form.
 %
 % input: d--distance between microphones

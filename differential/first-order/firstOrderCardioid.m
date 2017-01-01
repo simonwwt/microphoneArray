@@ -11,14 +11,17 @@
 %        f--temporal frequency
 % output: view of First Order Dipole Beamforming Pattern
 
-function firstOrderCardioid(d, f)
+function H = firstOrderCardioid(d, f)
+
+addpath(genpath('../utils'));
+
 w = 2 * pi * f;         % angular frequency
 c = 340;                % speed of sound
 
 st_vec1 = getSteeringVector(3, d, w, 0);
 st_vec2 = getSteeringVector(3, d, w, pi);
 constraint_vec = [0 1 -1];
-A = [st_vec1; st_vec2; constraint_vec];
+A = [st_vec1'; st_vec2'; constraint_vec];
 B = [1 0 0];
 B = B';
 % Designed filter
@@ -29,7 +32,7 @@ num_dot = 100;
 theta = linspace(0, 2*pi,num_dot);
 for n = 1 : num_dot
     st_vec = getSteeringVector(3, d, w, theta(n));
-    BP(n) = st_vec * H;
+    BP(n) = st_vec' * H;
     BP(n) = 20*log10(abs(BP(n)));
 end
 my_polar(theta, BP, -40, 0);
